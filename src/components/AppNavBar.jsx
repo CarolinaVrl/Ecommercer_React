@@ -1,20 +1,21 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AppNavBar = () => {
+    const navigate = useNavigate()
     return (
         <div className='navbar'>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#home">Mercado Latino</Navbar.Brand>
+                    <Navbar.Brand onClick={()=>navigate('/')} style={{color:'#f85555'}} >E-commerce</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link as={Link} to='/'>Products</Nav.Link>
-                            <Nav.Link as={Link} to='/login'>Login</Nav.Link>
-                            <Nav.Link as={Link} to='/purchase'>Purchases</Nav.Link>
-                            <Nav.Link as={Link} to='/cart'>Cart</Nav.Link>
+                            
+                            <Nav.Link as={Link} to='/login'><i className="fa-solid fa-user"></i></Nav.Link>
+                            <Nav.Link as={Link} to='/purchase'><i className="fa-solid fa-box-archive"></i></Nav.Link>
+                            <Nav.Link as={Link} to='/cart'><i className="fa-solid fa-cart-shopping"></i></Nav.Link>
                             
                         </Nav>
                     </Navbar.Collapse>

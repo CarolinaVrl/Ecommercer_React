@@ -40,19 +40,20 @@ const Products = () => {
                                 onChange={e => setSearchProduct(e.target.value)}
 
                             />
-                            <Button onClick={() => dispatch(filterProductForNameThunk(searchProduct))} variant="success">Success</Button>
+                            <Button onClick={() => dispatch(filterProductForNameThunk(searchProduct))} variant="success" style={{background:'#f85555'}}><i className="fa-solid fa-magnifying-glass"></i></Button>
                         </InputGroup>
-                        <Row xs={1} md={2} lg={3} className="g-4">
+                        <Row xs={1} md={2} lg={3} className="g-4" style={{paddingBottom:50}}>
                             {products.map(prod => (
                                 <Col>
 
-                                    <Card style={{height:350}} key={prod.id} onClick={() => navigate(`/products/${prod.id}`)}>
+                                    <Card style={{height:350, position:'relative', }} key={prod.id} onClick={() => navigate(`/products/${prod.id}`)}>
                                         <Card.Img variant="top" src={prod.images?.[0].url} style={{width:200, height:170, objectFit:'contain', margin:'auto', paddingTop:20}} />
                                         <Card.Body>
                                             <Card.Title>{prod.title}</Card.Title>
                                             <Card.Text>
 
                                             </Card.Text>
+                                            <Button variant="danger" style={{background:'#f85555',borderRadius:'50%',width:50, height:50, position:'absolute', bottom:40, right:35}}><i className="fa-solid fa-cart-shopping"></i></Button>{' '}
                                         </Card.Body>
                                     </Card>
                                 </Col>

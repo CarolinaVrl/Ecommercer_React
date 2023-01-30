@@ -26,7 +26,7 @@ const ProductsDetails = () => {
             ))}</p>
             <h3>{prod.brand}</h3>
             {productsSimilar.map(prod=>(
-                <ul key={prod.id} onClick={()=>{navigate(`/products/${prod.id}`)}}>
+                <ul key={prod.id} onClick={()=>{navigate(`/products/${prod.id   }`)}}>
                     <li>{prod.title}</li>
                 </ul>
             ))}
