@@ -6,5 +6,43 @@ box-sizing: border-box;}
   width: 100%;
   display: flex;
   justify-content: space-between;
+  
 }
+.welcome{
+  font-size: 22px;
+  text-align:left;
+}
+.welcome_box h2{
+  font-size: 26px;
+  text-align: center;
+}
+.welcome_box{
+  width: 80%;
+  margin: auto;
+  border-radius: 10px;
+  background: #A6E7E7 ;
+  padding: 20px;
+  
+  
+}
+.welcome_box> div{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  
+  
+}
+.welcome_box > div  h2{
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.welcome_box > div i{
+  font-size: 14px;
+}
+
+
 
