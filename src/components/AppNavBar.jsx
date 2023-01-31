@@ -4,6 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const AppNavBar = () => {
     const navigate = useNavigate()
+    const logOut = ()=>{
+        localStorage.setItem('token', '')
+    }
     return (
         <div className='navbar'>
             <Navbar bg="light" expand="lg">
@@ -16,6 +19,7 @@ const AppNavBar = () => {
                             <Nav.Link as={Link} to='/login'><i className="fa-solid fa-user"></i></Nav.Link>
                             <Nav.Link as={Link} to='/purchase'><i className="fa-solid fa-box-archive"></i></Nav.Link>
                             <Nav.Link as={Link} to='/cart'><i className="fa-solid fa-cart-shopping"></i></Nav.Link>
+                            <Nav.Link onClick={()=>logOut()} as={Link} to='/login'>Log Out</Nav.Link>
                             
                         </Nav>
                     </Navbar.Collapse>

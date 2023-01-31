@@ -44,9 +44,9 @@ const Products = () => {
                         </InputGroup>
                         <Row xs={1} md={2} lg={3} className="g-4" style={{paddingBottom:50}}>
                             {products.map(prod => (
-                                <Col>
+                                <Col key={prod.id}>
 
-                                    <Card style={{height:350, position:'relative', }} key={prod.id} onClick={() => navigate(`/products/${prod.id}`)}>
+                                    <Card style={{height:350, position:'relative', }}  onClick={() => navigate(`/products/${prod.id}`)}>
                                         <Card.Img variant="top" src={prod.images?.[0].url} style={{width:200, height:170, objectFit:'contain', margin:'auto', paddingTop:20}} />
                                         <Card.Body>
                                             <Card.Title>{prod.title}</Card.Title>
