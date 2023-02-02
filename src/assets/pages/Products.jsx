@@ -17,6 +17,11 @@ const Products = () => {
             .then(res => setCategory(res.data))
 
     }, [])
+    useEffect(() => {
+
+    })
+
+    const alertCarts = () => alert('hi')
 
     return (
         <div>
@@ -32,7 +37,7 @@ const Products = () => {
 
                     </Col>
                     <Col lg={9}>
-                        <InputGroup className="mb-3">
+                        <InputGroup className="mb-3 ">
                             <InputGroup.Text id="basic-addon1"></InputGroup.Text>
                             <Form.Control
                                 placeholder="Product"
@@ -40,22 +45,26 @@ const Products = () => {
                                 onChange={e => setSearchProduct(e.target.value)}
 
                             />
-                            <Button onClick={() => dispatch(filterProductForNameThunk(searchProduct))} variant="success" style={{background:'#f85555'}}><i className="fa-solid fa-magnifying-glass"></i></Button>
+                            <Button onClick={() => dispatch(filterProductForNameThunk(searchProduct))} variant="success" style={{ background: '#f85555' }}><i className="fa-solid fa-magnifying-glass"></i></Button>
                         </InputGroup>
-                        <Row xs={1} md={2} lg={3} className="g-4" style={{paddingBottom:50}}>
+                        <Row xs={1} md={2} lg={3} className="g-4" style={{ paddingBottom: 50 }}>
                             {products.map(prod => (
                                 <Col key={prod.id}>
+                                    <Container>
 
-                                    <Card style={{height:350, position:'relative', }}  onClick={() => navigate(`/products/${prod.id}`)}>
-                                        <Card.Img variant="top" src={prod.images?.[0].url} style={{width:200, height:170, objectFit:'contain', margin:'auto', paddingTop:20}} />
-                                        <Card.Body>
-                                            <Card.Title>{prod.title}</Card.Title>
-                                            <Card.Text>
+                                        <Card style={{ height: 350, position: 'relative', }} onClick={() => navigate(`/products/${prod.id}`)}>
+                                            <Card.Img variant="top" src={prod.images?.[0].url} style={{ width: 200, height: 170, objectFit: 'contain', margin: 'auto', paddingTop: 20 }} />
+                                            <Card.Body>
+                                                <Card.Text className='text-muted'>{prod.brand}               </Card.Text>
 
-                                            </Card.Text>
-                                            <Button variant="danger" style={{background:'#f85555',borderRadius:'50%',width:50, height:50, position:'absolute', bottom:40, right:35}}><i className="fa-solid fa-cart-shopping"></i></Button>{' '}
-                                        </Card.Body>
-                                    </Card>
+                                                <Card.Title style={{fontSize:17}} >{prod.title.slice(0,26)}</Card.Title>
+                                                <Card.Text className='text-muted'>Price               </Card.Text>
+                                                <Card.Text style={{ fontWeight: 'bold' }} >${prod.price}               </Card.Text>
+
+                                                <Button variant="danger" onClick={alertCarts} style={{ background: '#f85555', borderRadius: '50%', width: 50, height: 50, position: 'absolute', bottom: 40, right: 35 }}><i className="fa-solid fa-cart-shopping"></i></Button>
+                                            </Card.Body>
+                                        </Card>
+                                    </Container>
                                 </Col>
 
                             ))}

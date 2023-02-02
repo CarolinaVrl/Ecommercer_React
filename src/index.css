@@ -43,6 +43,10 @@ box-sizing: border-box;}
 .welcome_box > div i{
   font-size: 14px;
 }
-
+.purchase{
+  font-size: 24px;
+  padding-bottom: 20px;
+  
+}
 
 
