@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Card, Col, Container, Row, Table } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Card, Col, Container, Row, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { getPurchases } from '../../store/slices/purchases.slice';
@@ -13,7 +13,21 @@ const Purchases = () => {
     useEffect(() => {
         dispacth(getPurchases())
     }, [])
-    console.log(purchase)
+
+    // purchased paginated
+
+    const [forPage, setForPage] = useState(10)
+    const [page, setPage] = useState(1)
+    const last = forPage * page
+    const first = last - forPage
+    const paginedPurchases = purchase.slice(first,last)
+    const allpages = Math.ceil(purchase.length/forPage)
+    const allnumber = []
+    for(let i=1;i<=allpages;i++){
+        allnumber.push(i)
+    }
+   
+   
     return (
         <div>
 
@@ -21,7 +35,7 @@ const Purchases = () => {
                 <h1 className='purchase'>Compras</h1>
 
                 <Table className='' style={{ width:'80%', margin: 'auto' }} striped>
-                    {purchase.map(purchas => (
+                    {paginedPurchases.map(purchas => (
                         <thead key={purchas.id}>
 
                             <tr >
@@ -29,7 +43,7 @@ const Purchases = () => {
 
                                     <th><img style={{ width: 100, height: 80, objectFit: 'contain' }} src={purchas.product?.images[1].url} alt="" /></th>
                                     <th>{purchas.product?.title}</th>
-                                    <th> {purchas.createdAt.slice(0, 10)}</th>
+                                    <th> {purchas.createdAt?.slice(0, 10)}</th>
                                     <th>
                                         {purchas.quantity}
 
@@ -45,25 +59,11 @@ const Purchases = () => {
 
                 </Table>
 
-                {/* 
-                <Col lg={3}  >
-                    <Card  }}>
-                       <Card.Img variant="top" style={{ objectFit: 'contain', width: 180, height: 150 }} />
-                        <Card.Body>
-                            <Card.Title>a</Card.Title>
-                            <Card.Text>
+                {allnumber.map(number=>(
+                    <Button onClick={()=>setPage(number)} key={number}>{number}</Button>
+                ))}
 
-
-                            </Card.Text>
-                            <Card.Text>
-
-                            </Card.Text>
-                            <Card.Text>
-
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col> */}
+             
 
             </Container>
 

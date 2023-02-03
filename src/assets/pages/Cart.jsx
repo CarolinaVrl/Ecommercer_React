@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Button, Offcanvas, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getcarsThunk } from "../../store/slices/cart.slice";
+import {  getcarsThunk } from "../../store/slices/cart.slice";
 import { addPurchasesThunk } from '../../store/slices/purchases.slice';
 
 
@@ -20,10 +20,15 @@ const Cart = ({ show, handleClose }) => {
         dispatch(addPurchasesThunk())
 
     }
+
+    const deleted = ()=>{
+        alert('no me elimines :c')
+    }
    
     const total =(carti.map(cart=>parseInt(cart.product?.price * cart.quantity)))
     const numberSum = total.reduce((first,second)=>first+second,0)
-    console.log (numberSum)
+    console.log(carti)
+    
 
     return (
         <div>
@@ -39,7 +44,10 @@ const Cart = ({ show, handleClose }) => {
                                 <tr key={cart.id}>
                                     <th><img style={{ width: 50, height: 50 }} src={cart.product?.images[0].url} alt="" /> </th>
                                     <th>{cart.product?.title}</th>
+                                    <th>{cart.quantity}</th>
                                     <th>{((cart.product?.price) * (cart.quantity))}</th>
+                                    
+                                    <Button  variant="outline-danger"><i className="fa-solid fa-trash-can"></i></Button>{' '}
 
                                 </tr>
                             )}

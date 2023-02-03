@@ -29,7 +29,8 @@ const ProductsDetails = () => {
 
         }
         dispatch(postProductsThunk(cart))
-        console.log(cart)
+       
+       
 
     }
 

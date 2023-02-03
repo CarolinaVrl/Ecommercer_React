@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Dropdown, DropdownButton, Form, InputGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, useParams } from 'react-router-dom';
+import { postProductsThunk } from '../../store/slices/cart.slice';
 import { filterProductForNameThunk, getProductsFilterCategory, getProductsThunk } from '../../store/slices/products.slice';
 
 const Products = () => {
     const dispatch = useDispatch()
+    
     const navigate = useNavigate()
     const products = useSelector(state => state.products)
     const [category, setCategory] = useState([])
@@ -17,11 +19,9 @@ const Products = () => {
             .then(res => setCategory(res.data))
 
     }, [])
-    useEffect(() => {
+  
 
-    })
-
-    const alertCarts = () => alert('hi')
+    
 
     return (
         <div>
@@ -52,17 +52,18 @@ const Products = () => {
                                 <Col key={prod.id}>
                                     <Container>
 
-                                        <Card style={{ height: 350, position: 'relative', }} onClick={() => navigate(`/products/${prod.id}`)}>
-                                            <Card.Img variant="top" src={prod.images?.[0].url} style={{ width: 200, height: 170, objectFit: 'contain', margin: 'auto', paddingTop: 20 }} />
-                                            <Card.Body>
+                                        <Card style={{ height: 350, position: 'relative', }} >
+                                            <Card.Img onClick={() => navigate(`/products/${prod.id}`)} variant="top" src={prod.images?.[0].url} style={{ width: 200, height: 170, objectFit: 'contain', margin: 'auto', paddingTop: 20 }} />
+                                            <Card.Body onClick={() => navigate(`/products/${prod.id}`)}>
                                                 <Card.Text className='text-muted'>{prod.brand}               </Card.Text>
 
-                                                <Card.Title style={{fontSize:17}} >{prod.title.slice(0,26)}</Card.Title>
+                                                <Card.Title style={{ fontSize: 17 }} >{prod.title.slice(0, 26)}</Card.Title>
                                                 <Card.Text className='text-muted'>Price               </Card.Text>
                                                 <Card.Text style={{ fontWeight: 'bold' }} >${prod.price}               </Card.Text>
 
-                                                <Button variant="danger" onClick={alertCarts} style={{ background: '#f85555', borderRadius: '50%', width: 50, height: 50, position: 'absolute', bottom: 40, right: 35 }}><i className="fa-solid fa-cart-shopping"></i></Button>
+
                                             </Card.Body>
+                                            <Button variant="danger" onClick={() => { quantifyInCart }} style={{ background: '#f85555', borderRadius: '50%', width: 50, height: 50, position: 'absolute', bottom: 40, right: 35 }}><i className="fa-solid fa-cart-shopping"></i></Button>
                                         </Card>
                                     </Container>
                                 </Col>

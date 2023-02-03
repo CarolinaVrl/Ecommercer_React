@@ -28,6 +28,7 @@ function App() {
         <Route element={<ProtectRouted/>}>
           
           <Route path='/purchase' element={<Purchases/>} />
+          <Route path='/cart' element={<Cart/>} />
         </Route>
       </Routes>
 
