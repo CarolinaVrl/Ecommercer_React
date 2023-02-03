@@ -37,11 +37,12 @@ const Purchases = () => {
                 <Table className='' style={{ width:'80%', margin: 'auto' }} striped>
                     {paginedPurchases.map(purchas => (
                         <thead key={purchas.id}>
+                            
 
                             <tr >
                                 {/* <Link style={{width:'100%'}} to={`/products/${purchas.product?.id}`}> */}
 
-                                    <th><img style={{ width: 100, height: 80, objectFit: 'contain' }} src={purchas.product?.images[1].url} alt="" /></th>
+                                    <th><img onClick={()=>navigate(`/products/${purchas.product.id}`)} style={{ width: 100, height: 80, objectFit: 'contain' }} src={purchas.product?.images[1].url} alt="" /></th>
                                     <th>{purchas.product?.title}</th>
                                     <th> {purchas.createdAt?.slice(0, 10)}</th>
                                     <th>
