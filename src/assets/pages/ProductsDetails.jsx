@@ -48,7 +48,7 @@ const ProductsDetails = () => {
 
 
 
-                        <Carousel  >
+                        <Carousel className='dark' >
                             {prod.images?.map(imag => (
                                 <Carousel.Item key={imag.id} >
                                     <img className="d-block m-auto" style={{ width: 200, height: 320, objectFit: 'contain' }} src={imag.url} alt="" />
