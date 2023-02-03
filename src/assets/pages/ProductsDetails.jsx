@@ -29,10 +29,12 @@ const ProductsDetails = () => {
 
         }
         dispatch(postProductsThunk(cart))
-       
-       
+        
 
     }
+
+    const filterproduct = productsSimilar.filter(item => item.id !== prod.id)
+
 
 
     return (
@@ -90,7 +92,7 @@ const ProductsDetails = () => {
             <Container>
                 <h2>Productos Similares</h2>
                 <Row xs={1} md={2} lg={3} className="g-4">
-                    {productsSimilar.map(prod => (
+                    {filterproduct.map(prod => (
                         <Col key={prod.id} >
                             <Card style={{ width: 300, height: 380 }} onClick={() => { navigate(`/products/${prod.id}`) }}>
                                 <Card.Img style={{ width: 200, height: 150, paddingTop: 10, margin: 'auto' }} src={prod.images[0].url} variant="top" />
